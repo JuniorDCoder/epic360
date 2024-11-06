@@ -4,7 +4,7 @@
         <div class="flex flex-col w-full gap-4 py-12 md:flex-row">
             <div class="flex flex-col items-center w-full gap-5 md:w-1/2">
                 <img :src="`/storage/` + product.image" alt="Product" class="w-[300px]">
-                <div class="flex gap-5 mt-4">
+                <div class="flex gap-3 mt-4 md:gap-5">
                     <img v-for="image in product.images" :key="image.id" :src="`/storage/` + image.image_path" alt="Product Image" class="md:w-[100px] w-[85px] md:h-[100px] object-cover">
                 </div>
             </div>
