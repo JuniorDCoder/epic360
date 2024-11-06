@@ -1,5 +1,6 @@
 import '../css/app.css';
 import './bootstrap';
+import 'vue3-toastify/dist/index.css'
 
 import { createInertiaApp } from '@inertiajs/vue3';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
@@ -7,6 +8,7 @@ import { createApp, h } from 'vue';
 import { ZiggyVue } from '../../vendor/tightenco/ziggy';
 import AOS from 'aos'
 import 'aos/dist/aos.css'
+import Vue3Toastify from 'vue3-toastify'
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 AOS.init();
@@ -22,6 +24,7 @@ createInertiaApp({
             .use(plugin)
             .use(ZiggyVue)
             .use(AOS)
+            .use(Vue3Toastify)
             .mount(el);
     },
     progress: {

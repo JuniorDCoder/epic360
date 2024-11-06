@@ -19,7 +19,8 @@ export default {
                    DEFAULT:  '#F0F0F0',
                    dark: '#A8A9AD',
                     text: '#292929'
-                }
+                },
+                secondary: '#007AFF'
             },
             boxShadow: {
                 'custom-light': '0px 1px 3px 1px #00000026',
