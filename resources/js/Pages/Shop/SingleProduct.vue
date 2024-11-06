@@ -1,41 +1,41 @@
 <template>
     <Head title="Product Details"/>
     <BaseLayout>
-        <div class="flex w-full gap-4 py-12 md:flex-row">
-            <div class="flex flex-col items-center w-1/2 gap-5">
+        <div class="flex flex-col w-full gap-4 py-12 md:flex-row">
+            <div class="flex flex-col items-center w-full gap-5 md:w-1/2">
                 <img :src="`/storage/` + product.image" alt="Product" class="w-[300px]">
                 <div class="flex gap-5 mt-4">
-                    <img v-for="image in product.images" :key="image.id" :src="`/storage/` + image.image_path" alt="Product Image" class="w-[100px] h-[100px] object-cover">
+                    <img v-for="image in product.images" :key="image.id" :src="`/storage/` + image.image_path" alt="Product Image" class="md:w-[100px] w-[85px] md:h-[100px] object-cover">
                 </div>
             </div>
-            <div class="flex flex-col w-1/2 gap-3">
+            <div class="flex flex-col gap-3 md:w-1/2">
                 <h1 class="text-2xl font-semibold text-primary-text">{{product.name}}</h1>
                 <div class="flex gap-6">
                     <p v-if="product.giveaway_price" class="text-sm font-semibold text-gray-700 line-through">€{{ product.price }}</p>
                     <p v-else class="text-sm font-semibold text-gray-700">€{{ product.price }}</p>
                     <p v-if="product.giveaway_price" class="text-sm font-semibold text-gray-700">€{{ product.giveaway_price }}</p>
                 </div>
-                <p class="w-4/5 text-gray-700 text-md">{{product.description}} </p>
-                <div class="flex items-center justify-center w-1/6 gap-5 px-2 py-2.5 border border-gray-500 text-gray-700 rounded-sm">
+                <p class="text-gray-700 md:w-4/5 text-md">{{product.description}} </p>
+                <div class="flex items-center justify-center w-1/3 md:w-1/6 gap-5 px-2 py-2.5 border border-gray-500 text-gray-700 rounded-sm">
                     <span class="text-2xl cursor-pointer">-</span>
                     <span class="text-2xl cursor-pointer">1</span>
                     <span class="text-2xl cursor-pointer">+</span>
                 </div>
                 <p class="text-gray-700">Category: <span>&nbsp;&nbsp;{{product.category.name}}</span> </p>
-                <div class="flex w-2/3 gap-8">
-                    <Button @click="addToCart" fill="white" textColor="secondary" class="w-1/2">Add to Cart</Button>
-                    <Button :is-link="true" :url="{path: 'shop'}" fill="secondary" textColor="white" class="w-1/2">Pay Now</Button>
+                <div class="flex items-center justify-between gap-8 md:w-2/3">
+                    <Button @click="addToCart" fill="white" textColor="secondary" class="w-full md:w-1/2">Add to Cart</Button>
+                    <Button :is-link="true" :url="{path: 'shop'}" fill="secondary" textColor="white" class="w-full md:w-1/2">Pay Now</Button>
                 </div>
-                <hr class="w-full mb-4 border-gray-300" />
-                <div class="flex items-center gap-2 text-sm">
+                <hr class="w-full my-4 border-gray-300" />
+                <div class="flex items-center gap-2 text-lg md:text-sm">
                     <img src="/public/storage/icons/help.png" class="w-5 h-5" alt="Help" />
                     <p>Need some help? </p>
                     <Link href="/" class="text-secondary">Contact Us</Link>
                 </div>
             </div>
         </div>
-        <hr class="w-full my-4 border-gray-300" />
-        <div class="mx-24 mt-4">
+        <hr class="w-full mb-4 border-gray-300" />
+        <div class="mt-4 md:mx-24">
             <div class="flex gap-4 py-6">
                 <button @click="showDescription = true" :class="{'font-bold underline': showDescription}">Description</button>
                 <button @click="showDescription = false" :class="{'font-bold underline': !showDescription}">Reviews ({{ product.reviews.length }})</button>
