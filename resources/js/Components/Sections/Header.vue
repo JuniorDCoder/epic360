@@ -1,6 +1,6 @@
 <template>
     <!-- Country selector section -->
-    <div v-if="isSelectCountry" class="flex flex-col justify-center w-full gap-4 px-4 py-4 bg-primary-dark md:items-center md md:flex-row lg:gap-7 lg:px-auto">
+    <div v-if="isSelectCountry && isWelcomeRoute" class="flex flex-col justify-center w-full gap-4 px-4 py-4 bg-primary-dark md:items-center md md:flex-row lg:gap-7 lg:px-auto">
         <div class="flex justify-between">
             <h3 class="text-primary-text">Select your country or region</h3>
             <button @click="toggleSelectCountry" class="lg:hidden">
@@ -31,9 +31,14 @@
             <Link :href="route('welcome')">
                 <img src="../../assets/icons/search.png" alt="Search" class="w-[24px] h-[24px]" />
             </Link>
-            <Link :href="route('welcome')">
-                <img src="../../assets/icons/cart.png" alt="Cart" class="w-[24px] h-[24px]" />
-            </Link>
+            <div class="relative pr-3">
+                <Link :href="route('cart.details')">
+                    <img src="../../assets/icons/cart.png" alt="Cart" class="w-[20px] h-[20px]" />
+                </Link>
+                <div v-if="cartCount > 0" class="absolute flex items-center justify-center w-5 h-5 text-xs text-white rounded-full bottom-3 left-4 bg-secondary">
+                    {{ cartCount }}
+                </div>
+            </div>
         </div>
     </div>
 
@@ -75,18 +80,33 @@
         <Link :href="route('welcome')">
             <img src="../../assets/icons/search.png" alt="Search" class="w-[20px] h-[20px]" />
         </Link>
-        <Link :href="route('welcome')">
-            <img src="../../assets/icons/cart.png" alt="Cart" class="w-[20px] h-[20px]" />
-        </Link>
+        <div class="relative">
+            <Link :href="route('cart.details')">
+                <img src="../../assets/icons/cart.png" alt="Cart" class="w-[20px] h-[20px]" />
+            </Link>
+            <div v-if="cartCount > 0" class="absolute flex items-center justify-center w-5 h-5 text-xs text-white rounded-full bottom-3 left-4 bg-secondary">
+                {{ cartCount }}
+            </div>
+        </div>
     </div>
 </template>
 
 <script setup>
-import { ref } from "vue";
-import { Link } from "@inertiajs/vue3";
+import { ref, computed, onMounted } from "vue";
+import { Link, usePage } from "@inertiajs/vue3";
 import NavLink from "../NavLink.vue";
+import { cartCount, fetchCartCount } from '@/stores/cartStore';
 
-const isSelectCountry = ref(true)
+onMounted(() => {
+    fetchCartCount();
+});
+const isSelectCountry = ref(true);
+const url = usePage()
+const isWelcomeRoute = computed(() => {
+    console.log(url)
+    return url === '/';
+});
+
 
 // Reactive state for menu toggle
 const isMenuOpen = ref(false);
@@ -98,7 +118,7 @@ const toggleMenu = () => {
 
 const toggleSelectCountry = () => {
     isSelectCountry.value = false;
-}
+};
 </script>
 
 <style scoped>

@@ -67,6 +67,78 @@ class ProductSeeder extends Seeder
                     'products/jbl4.png'
                 ]
             ],
+            [
+                'name' => 'MacBook Pro 14 with Keyboard light',
+                'description' => '12-Core CPU 16-Core GPU 24GB Unified Memory 512GB SSD Storage¹ · 16-core Neural Engine · 14-inch Liquid Retina XDR display²',
+                'details' => '
+                    <p><strong>M4, M4 Pro, and M4 Max. Ready for whatever’s impossible.</strong></p>
+                    <p>Strong sound for every adventure</p>
+                    <p>MacBook Pro features the most advanced lineup of chips ever built for a pro laptop. Phenomenal single- and multithreaded CPU performance, faster unified memory, enhanced machine learning accelerators — the M4 family of chips gives you the kind of speed and capability you’ve never thought possible. And the powerful Neural Engine makes AI tasks like image upscaling and video caption creation as well as on-device Apple Intelligence features fly.</p>
+                    <br>
+                    <p><strong>Take a closer look.:</strong></p>
+                    <ul>
+                        <li>Next-level graphics performance. Game on.</li>
+                        <li>IP67 waterproof and dustproof</li>
+                        <li>12 hours playback time</li>
+                        <li>USB charging protection</li>
+                    </ul>
+                    <br>
+                    <p><strong>Apple Intelligence. Genius at work.</strong></p>
+                    <p>Apple Intelligence is the personal intelligence system that helps you write, express yourself, and get things done effortlessly. With groundbreaking privacy protections, it gives you peace of mind that no one else can access your data — not even Apple.1</p>
+                    <br>
+                    <p><strong>Great powers come with great privacy.</strong></p>
+                    <p>Apple Intelligence is designed to protect your privacy at every step. It’s integrated into the core of your Mac through on-device processing. So it’s aware of your personal information without collecting your personal information.</p>
+                    <br>
+                    <p><strong>12 hours playback time</strong></p>
+                    <pAnd with groundbreaking Private Cloud Compute, Apple Intelligence can draw on larger server-based models, running on Apple silicon, to handle more complex requests for you while protecting your privacy.</p>
+                    <br>
+                ',
+                'price' =>160.00,
+                'in_stock' => true,
+                'image' => 'products/macbook.png',
+                'category_id' => 1,
+                'images' => [
+                    'products/macbook.png',
+                ],
+            ],
+            [
+                'name' => 'Soundcore Portable Bluetooth speaker',
+                'description' => '12-Core CPU 16-Core GPU 24GB Unified Memory 512GB SSD Storage¹ · 16-core Neural Engine · 14-inch Liquid Retina XDR display²',
+                'details' => '
+                    <p><strong>M4, M4 Pro, and M4 Max. Ready for whatever’s impossible.</strong></p>
+                    <p>Strong sound for every adventure</p>
+                    <p>MacBook Pro features the most advanced lineup of chips ever built for a pro laptop. Phenomenal single- and multithreaded CPU performance, faster unified memory, enhanced machine learning accelerators — the M4 family of chips gives you the kind of speed and capability you’ve never thought possible. And the powerful Neural Engine makes AI tasks like image upscaling and video caption creation as well as on-device Apple Intelligence features fly.</p>
+                    <br>
+                    <p><strong>Take a closer look.:</strong></p>
+                    <ul>
+                        <li>Next-level graphics performance. Game on.</li>
+                        <li>IP67 waterproof and dustproof</li>
+                        <li>12 hours playback time</li>
+                        <li>USB charging protection</li>
+                    </ul>
+                    <br>
+                    <p><strong>Apple Intelligence. Genius at work.</strong></p>
+                    <p>Apple Intelligence is the personal intelligence system that helps you write, express yourself, and get things done effortlessly. With groundbreaking privacy protections, it gives you peace of mind that no one else can access your data — not even Apple.1</p>
+                    <br>
+                    <p><strong>Great powers come with great privacy.</strong></p>
+                    <p>Apple Intelligence is designed to protect your privacy at every step. It’s integrated into the core of your Mac through on-device processing. So it’s aware of your personal information without collecting your personal information.</p>
+                    <br>
+                    <p><strong>12 hours playback time</strong></p>
+                    <pAnd with groundbreaking Private Cloud Compute, Apple Intelligence can draw on larger server-based models, running on Apple silicon, to handle more complex requests for you while protecting your privacy.</p>
+                    <br>
+                ',
+               'price' => 160.00,
+                'giveaway_price' => 150.00,
+                'in_stock' => true,
+                'image' => 'products/soundcore.png',
+                'category_id' => 1,
+                'images' => [
+                    'products/soundcore.png',
+                    'products/jbl2.png',
+                    'products/jbl3.png',
+                    'products/jbl4.png'
+                ]
+            ]
         ];
 
         foreach ($products as $productData) {

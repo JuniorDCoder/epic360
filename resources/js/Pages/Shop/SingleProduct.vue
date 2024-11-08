@@ -58,18 +58,28 @@
 <script setup>
 import BaseLayout from '@//Layouts/BaseLayout.vue'
 import Button from '@/Components/Button.vue';
-import { Head, Link } from '@inertiajs/vue3';
+import { Head, Link, useForm } from '@inertiajs/vue3';
 import { ref } from 'vue';
 import { toast } from 'vue3-toastify'
+import { incrementCartCount } from '@/stores/cartStore';
 
 const props = defineProps({
     product: Object
 })
 
+const form = useForm({
+    product: props.product
+});
+
 const showDescription = ref(true);
 
 const addToCart = () => {
-    toast.success(props.product.name+` added to cart!`);
+    form.post(route('cart.add', { product: props.product }), {
+        onSuccess: () => {
+            toast.success(props.product.name + ' added to cart!');
+            incrementCartCount();
+        }
+    });
 };
 </script>
 
