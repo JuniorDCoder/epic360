@@ -59,7 +59,7 @@ class ProductSeeder extends Seeder
                 'giveaway_price' => 150.00,
                 'in_stock' => true,
                 'image' => 'products/red_jbl.png',
-                'category_id' => 1,
+                'category_id' => 6,
                 'images' => [
                     'products/jbl1.png',
                     'products/jbl2.png',
@@ -96,7 +96,7 @@ class ProductSeeder extends Seeder
                 'price' =>160.00,
                 'in_stock' => true,
                 'image' => 'products/macbook.png',
-                'category_id' => 1,
+                'category_id' => 2,
                 'images' => [
                     'products/macbook.png',
                 ],
@@ -131,7 +131,7 @@ class ProductSeeder extends Seeder
                 'giveaway_price' => 150.00,
                 'in_stock' => true,
                 'image' => 'products/soundcore.png',
-                'category_id' => 1,
+                'category_id' => 6,
                 'images' => [
                     'products/soundcore.png',
                     'products/jbl2.png',

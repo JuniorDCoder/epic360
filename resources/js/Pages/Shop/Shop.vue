@@ -19,15 +19,16 @@
                         <span>{{ products.total }}</span>
                     </p>
                     <p>Sort by</p>
-                    <select class="py-3 text-primary-text w-full md:w-[100px] px-2" name="" id="">
-                        <option value="">Default</option>
+                    <select v-model="selectedCategory" @change="filterProducts" class="py-3 text-primary-text w-full md:w-[100px] px-2">
+                        <option value="">All Categories</option>
+                        <option v-for="category in categories" :key="category.id" :value="category.id">{{ category.name }}</option>
                     </select>
                 </div>
             </div>
 
             <div class="flex flex-col w-full gap-3 py-12 md:px-24">
                 <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-                    <ShopItem v-for="product in products.data" :key="product.id" :product="product"/>
+                    <ShopItem v-for="product in filteredProducts" :key="product.id" :product="product"/>
                 </div>
                 <div class="flex items-center justify-between mt-4">
                     <div>
@@ -35,29 +36,41 @@
                     </div>
                     <div class="flex items-center gap-2">
                         <button @click="goToPage(products.current_page - 1)" :disabled="!products.prev_page_url" class="px-4 py-2 text-white rounded bg-primary-text">Previous</button>
-
                         <button @click="goToPage(products.current_page + 1)" :disabled="!products.next_page_url" class="px-4 py-2 text-white rounded bg-secondary">Next</button>
                     </div>
                 </div>
             </div>
-
         </div>
     </BaseLayout>
 </template>
 
 <script setup>
 import BaseLayout from '@/Layouts/BaseLayout.vue'
-import Button from '@/Components/Button.vue';
 import ShopItem from '../../Components/ShopItem.vue';
-import { ref, watch } from 'vue';
+import { ref, computed, watch } from 'vue';
 import { usePage } from '@inertiajs/vue3';
 
 defineProps({
-    products: [Object, Array]
+    products: [Object, Array],
+    categories: Array
 })
 
 const { props } = usePage();
 const products = props.products;
+const categories = props.categories;
+const selectedCategory = ref('');
+
+const filteredProducts = computed(() => {
+    if (!selectedCategory.value) {
+        return products.data;
+    }
+    return products.data.filter(product => product.category.id === selectedCategory.value);
+});
+
+const filterProducts = () => {
+    // This method is called when the category is changed
+};
+
 const pageNumber = ref(products.current_page);
 
 const goToPage = (page) => {
@@ -71,6 +84,6 @@ watch(() => products.current_page, (newPage) => {
 });
 </script>
 
-<style  scoped>
-
+<style scoped>
+/* Add your styles here */
 </style>

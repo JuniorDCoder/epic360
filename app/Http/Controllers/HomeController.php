@@ -18,8 +18,12 @@ class HomeController extends Controller
 
     public function shop()
     {
+        $products = Product::with('category')->paginate(9);
+        $categories = Category::all();
+
         return Inertia::render('Shop/Shop', [
-            "products" => Product::paginate(9)
+            'products' => $products,
+            'categories' => $categories
         ]);
     }
     public function productDetails($id){
