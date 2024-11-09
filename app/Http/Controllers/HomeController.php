@@ -32,4 +32,8 @@ class HomeController extends Controller
             'product' => $product
         ]);
     }
+
+    public function myAccount(){
+        return Inertia::render('MyAccount');
+    }
 }

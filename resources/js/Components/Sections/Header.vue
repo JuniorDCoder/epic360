@@ -34,10 +34,11 @@
             <div class="relative pr-3">
                 <Link :href="route('cart.details')">
                     <img src="../../assets/icons/cart.png" alt="Cart" class="w-[20px] h-[20px]" />
+
+                    <div v-if="cartCount > 0" class="absolute flex items-center justify-center w-5 h-5 text-xs text-white rounded-full bottom-3 left-4 bg-secondary">
+                        {{ cartCount }}
+                    </div>
                 </Link>
-                <div v-if="cartCount > 0" class="absolute flex items-center justify-center w-5 h-5 text-xs text-white rounded-full bottom-3 left-4 bg-secondary">
-                    {{ cartCount }}
-                </div>
             </div>
         </div>
     </div>
@@ -55,7 +56,7 @@
                 <nav class="flex flex-col mt-10 space-y-4 text-left">
                     <NavLink :is-active="route().current('welcome')" :route="route('welcome')" text="Home" />
                     <NavLink :is-active="route().current('shop')" :route="route('shop')" text="Shop" />
-                    <NavLink :route="route('welcome')" text="My Account" :is-active=false />
+                    <NavLink :route="route('user.account')" text="My Account" :is-active="route().current('user.account')"/>
                     <NavLink :route="route('welcome')" text="Support" :is-active=false />
                 </nav>
             </div>
@@ -72,7 +73,7 @@
         </Link>
         <NavLink :is-active="route().current('welcome')" :route="route('welcome')" text="Home" />
         <NavLink :is-active="route().current('shop')" :route="route('shop')" text="Shop" />
-        <NavLink :route="route('welcome')" text="My account" :is-active=false />
+        <NavLink :route="route('user.account')" text="My account" :is-active="route().current('user.account')" />
         <NavLink :route="route('welcome')" text="Support" :is-active=false />
         <Link :href="route('welcome')">
             <img src="../../assets/icons/profile.png" alt="Profile" class="w-[20px] h-[20px]" />
@@ -83,10 +84,11 @@
         <div class="relative">
             <Link :href="route('cart.details')">
                 <img src="../../assets/icons/cart.png" alt="Cart" class="w-[20px] h-[20px]" />
+
+                <div v-if="cartCount > 0" class="absolute flex items-center justify-center w-5 h-5 text-xs text-white rounded-full bottom-3 left-4 bg-secondary">
+                    {{ cartCount }}
+                </div>
             </Link>
-            <div v-if="cartCount > 0" class="absolute flex items-center justify-center w-5 h-5 text-xs text-white rounded-full bottom-3 left-4 bg-secondary">
-                {{ cartCount }}
-            </div>
         </div>
     </div>
 </template>
