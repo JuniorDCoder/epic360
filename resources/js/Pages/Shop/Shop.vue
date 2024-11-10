@@ -13,13 +13,13 @@
                         Showing {{ products.from }} to {{ products.to }} of {{ products.total }} results
                     </div>
                 </div>
-                <div class="flex items-center justify-between w-full gap-4 text-sm md:w-1/4">
-                    <p>Show</p>
+                <div class="flex items-center w-full gap-4 text-sm md:w-1/4">
+                    <!-- <p>Show</p>
                     <p class="flex items-center justify-center w-10 h-10 p-3 bg-gray-300 border border-gray-400 text-primary-text">
                         <span>{{ products.total }}</span>
-                    </p>
+                    </p> -->
                     <p>Sort by</p>
-                    <select v-model="selectedCategory" @change="filterProducts" class="py-3 text-primary-text w-full md:w-[100px] px-2">
+                    <select v-model="selectedCategory" @change="filterProducts" class="w-2/3 px-2 py-3 text-primary-text">
                         <option value="">All Categories</option>
                         <option v-for="category in categories" :key="category.id" :value="category.id">{{ category.name }}</option>
                     </select>

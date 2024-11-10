@@ -25,6 +25,7 @@ import { Link , useForm} from '@inertiajs/vue3';
 import { toast } from 'vue3-toastify'
 import { computed } from 'vue';
 import { incrementCartCount } from '@/stores/cartStore';
+import { addProductToCart } from '../helpers/globalHelper';
 
 const props = defineProps({
     product: Object
@@ -42,12 +43,7 @@ const percentageOff = computed(() => {
 });
 
 const addToCart = () => {
-    form.post(route('cart.add', { product: props.product }), {
-        onSuccess: () => {
-            toast.success(props.product.name + ' added to cart!');
-            incrementCartCount();
-        }
-    });
+    addProductToCart(form, props.product)
 };
 </script>
 

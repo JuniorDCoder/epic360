@@ -16,10 +16,10 @@
                     <p v-if="product.giveaway_price" class="text-sm font-semibold text-gray-700">€{{ product.giveaway_price }}</p>
                 </div>
                 <p class="text-gray-700 md:w-4/5 text-md">{{product.description}} </p>
-                <div class="flex items-center justify-center w-1/3 md:w-1/6 gap-5 px-2 py-2.5 border border-gray-500 text-gray-700 rounded-sm">
-                    <span class="text-2xl cursor-pointer">-</span>
-                    <span class="text-2xl cursor-pointer">1</span>
-                    <span class="text-2xl cursor-pointer">+</span>
+                <div class="flex w-1/3 md:w-1/5 items-center justify-center md: gap-5 px-2 py-2.5 border border-gray-500 text-gray-700 rounded-sm">
+                    <span @click="decrementQuantity" class="text-2xl cursor-pointer select-none">-</span>
+                    <span class="text-2xl cursor-pointer">{{quantity}}</span>
+                    <span @click="incrementQuantity" class="text-2xl cursor-pointer select-none">+</span>
                 </div>
                 <p class="text-gray-700">Category: <span>&nbsp;&nbsp;{{product.category.name}}</span> </p>
                 <div class="flex items-center justify-between gap-8 md:w-2/3">
@@ -62,7 +62,19 @@ import { Head, Link, useForm } from '@inertiajs/vue3';
 import { ref } from 'vue';
 import { toast } from 'vue3-toastify'
 import { incrementCartCount } from '@/stores/cartStore';
+import { addProductToCart } from '../../helpers/globalHelper';
 
+const quantity = ref(1)
+
+const incrementQuantity = () => {
+    quantity.value++
+}
+
+const decrementQuantity = () => {
+    if (quantity.value > 1) {
+        quantity.value--
+    }
+}
 const props = defineProps({
     product: Object
 })
@@ -74,13 +86,12 @@ const form = useForm({
 const showDescription = ref(true);
 
 const addToCart = () => {
-    form.post(route('cart.add', { product: props.product }), {
-        onSuccess: () => {
-            toast.success(props.product.name + ' added to cart!');
-            incrementCartCount();
-        }
-    });
+    addProductToCart(form, props.product, quantity.value)
 };
+
+const updateProduct = (item, operation) => {
+    updateProductQuantity(item, operation)
+}
 </script>
 
 <style scoped>

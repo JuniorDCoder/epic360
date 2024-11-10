@@ -22,12 +22,12 @@ class CartController extends Controller
             'latestProducts' => Product::latest()->take(3)->get()
         ]);
     }
-    public function addToCart(Product $product){
+    public function addToCart(Product $product, Request $request){
         if($product->in_stock > 0){
             $cartData = [];
             $cartData['id'] = $product->id;
             $cartData['name'] = $product->name;
-            $cartData['qty'] = $product->in_stock;
+            $cartData['qty'] = $request->qty;
             $cartData['price'] = $product->giveaway_price ? $product->giveaway_price : $product->price;
             $cartData['weight'] = 10;
             $cartData['options']['image'] = $product->image;
@@ -51,5 +51,22 @@ class CartController extends Controller
     {
         Cart::remove($rowId);
         return redirect()->back();
+    }
+    public function updateProductQty(Request $request)
+    {
+        $productId = Cart::get($request->rowId)->id;
+        $product = Product::findOrFail($productId);
+
+        Cart::update($request->rowId, $request->quantity);
+        $productTotal = $this->getProductTotal($request->rowId);
+
+        return redirect()->back();
+    }
+
+    public function getProductTotal($rowId)
+    {
+       $product = Cart::get($rowId);
+       $total = ($product->price + $product->options->variants_total) * $product->qty;
+       return $total;
     }
 }

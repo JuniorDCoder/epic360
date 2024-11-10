@@ -9,13 +9,13 @@
                         <div class="flex flex-col items-end justify-between gap-6 md:items-center md:flex-row">
                             <span class="text-2xl font-semibold md:w-1/2 text-primary-text">{{product.name}}</span>
                             <div class="flex w-1/3 md:w-1/5 items-center justify-center md: gap-5 px-4 py-2.5 border border-gray-500 text-gray-700 rounded-sm">
-                                <span @click="decrementQty(product)" class="text-2xl cursor-pointer select-none">-</span>
+                                <span @click="updateProduct(product, 'subtract')" class="text-2xl cursor-pointer select-none">-</span>
                                 <span class="text-2xl cursor-pointer">{{product.qty}}</span>
-                                <span @click="incrementQty(product)" class="text-2xl cursor-pointer select-none">+</span>
+                                <span @click="updateProduct(product, 'add')" class="text-2xl cursor-pointer select-none">+</span>
                             </div>
                             <div class="flex flex-col items-end gap-2">
                                 <div class="flex gap-6">
-                                    <p v-if="product.options.actual_price" class="font-semibold text-gray-700 line-through text-md md:text-sm">€{{ product.options.actual_price * product.qty }}</p>
+                                    <p v-if="product.options.actual_price !== product.price" class="font-semibold text-gray-700 line-through text-md md:text-sm">€{{ product.options.actual_price * product.qty }}</p>
                                     <p v-else class="font-semibold text-gray-700 text-md md:text-sm">€{{ product.price * product.qty }}</p>
                                     <p v-if="product.options.actual_price !== product.price" class="font-semibold text-gray-700 text-md md:text-sm">€{{ product.price * product.qty }}</p>
                                 </div>
@@ -25,10 +25,10 @@
                         </div>
                         <div class="flex flex-col">
                             <hr class="w-full my-4 border-gray-300" />
-                            <div class="flex items-center gap-2 text-sm">
-                                <Link href="/" class="text-secondary">Find out how soon you can get this product</Link>
-                                <img src="/public/storage/icons/help.png" class="w-5 h-5" alt="Help" />
-                            </div>
+                            <Link href="/"class="flex items-center gap-2 text-sm">
+                                <p class="text-secondary">Find out how soon you can get this product</p>
+                                <img class="w-3 h-4" src="/public/storage/icons/right-up.png" />
+                            </Link>
                         </div>
                     </div>
                 </div>
@@ -45,7 +45,10 @@
 
                         <!-- Coupon Input Field -->
                         <transition name="slide-fade">
-                            <input v-if="showCouponInput" type="text" placeholder="Enter coupon code" class="w-full px-4 py-2 mt-2 transition-all duration-300 border border-gray-300 rounded-sm" />
+                            <div v-if="showCouponInput"  class="flex items-start justify-start gap-2">
+                                <input type="text" placeholder="Enter coupon code" class="w-full px-4 py-2 transition-all duration-300 border border-gray-300 rounded-sm" />
+                                <Button >Apply</Button>
+                            </div>
                         </transition>
 
                         <!-- Cart Totals -->
@@ -91,6 +94,7 @@ import { toast } from 'vue3-toastify';
 import { ref, computed } from 'vue';
 import { decrementCartCount } from '@/stores/cartStore';
 import LatestProducts from '../../Components/Sections/LatestProducts.vue';
+import { updateProductQuantity } from '../../helpers/globalHelper';
 
 const props = defineProps({
     cartItems: Array,
@@ -102,18 +106,6 @@ const showCouponInput = ref(false);
 
 const toggleCouponInput = () => {
     showCouponInput.value = !showCouponInput.value;
-};
-
-const incrementQty = (item) => {
-    if (item.qty >= 1) {
-        item.qty++;
-    }
-};
-
-const decrementQty = (item) => {
-    if (item.qty > 1) {
-        item.qty--;
-    }
 };
 
 const form = useForm({});
@@ -128,6 +120,10 @@ const removeCartItem = (item) => {
         }
     });
 };
+
+const updateProduct = (item, operation) => {
+    updateProductQuantity(form, item, operation)
+}
 
 const shipping = ref(0);
 
