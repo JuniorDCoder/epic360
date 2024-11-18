@@ -2,9 +2,9 @@
     <BaseLayout>
         <div class="relative flex items-center justify-center w-full h-screen">
             <img src="/public/storage/images/login.png" alt="Background" class="absolute inset-0 z-0 object-cover w-full h-full">
-            <form @submit.prevent="handleSubmit" class="relative z-10 flex flex-col w-1/2 p-6 px-24 bg-white rounded-md bg-opacity-90">
+            <form @submit.prevent="handleSubmit" class="relative z-10 flex flex-col w-full p-6 mx-4 bg-white rounded-md md:px-24 md:w-1/2 bg-opacity-90 md:mx-0">
                 <div class="flex flex-col items-center">
-                    <h1 class="py-5 text-[16px] md:font-semibold md:text-3xl text-primary-text">Login</h1>
+                    <h1 class="py-5 text-[32px] md:font-semibold md:text-3xl text-primary-text">Login</h1>
                     <p class="text-sm text-primary-text">Welcome back, you were missed</p>
                 </div>
                 <div class="flex flex-col gap-3 my-5">
