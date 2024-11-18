@@ -1,9 +1,11 @@
 <?php
 
+use Inertia\Inertia;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
-use Inertia\Inertia;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\AuthController;
 
 Route::get('/', [HomeController::class, 'home'])->name('welcome');
 Route::get('/my-account',[HomeController::class, 'myAccount'])->name('user.account');
@@ -20,3 +22,5 @@ Route::group(["prefix" => "shop"], function() {
         Route::post('/{rowId}/update', [CartController::class, 'updateProductQty'])->name('cart.update');
     });
 });
+
+require __DIR__.'/auth.php';

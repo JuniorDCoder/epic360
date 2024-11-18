@@ -34,6 +34,10 @@ class HomeController extends Controller
     }
 
     public function myAccount(){
-        return Inertia::render('MyAccount');
+        return Inertia::render('Auth/MyAccount');
+    }
+
+    public function login(){
+        return Inertia::render('Auth/Login');
     }
 }

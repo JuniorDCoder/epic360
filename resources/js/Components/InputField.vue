@@ -3,6 +3,7 @@
       <label class="text-sm" :for="inputId">{{ label }}</label>
       <input
         :id="inputId"
+        v-model="model"
         :type="type"
         :placeholder="placeholder"
         class="p-3 border border-gray-600 rounded-md md:p-2"
@@ -13,6 +14,11 @@
   <script setup>
   import { computed } from 'vue';
   import { defineProps } from 'vue';
+
+  const model = defineModel({
+    type: String,
+    required: true,
+});
 
   const props = defineProps({
     label: { type: String, required: true },
