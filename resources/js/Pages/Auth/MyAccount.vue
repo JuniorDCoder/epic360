@@ -8,7 +8,7 @@
                 <img src="/public/storage/icons/pencil.png" class="w-6 h-6 cursor-pointer" alt="">
             </div>
 
-            <div v-if="$page.props.auth.user" class="flex w-full flex-col md:px-6 pt-2 pb-20 items-center justify-between md:w-[85.5%] mx-auto border border-gray-500 md:flex-row md:my-3 my-9">
+            <div v-if="$page.props.auth.user" class="flex w-full flex-col md:pl-0 pl-4 md:px-6 pt-2 pb-20 md:items-center justify-between md:w-[85.5%] mx-auto border border-gray-500 md:flex-row md:my-3 my-9">
                <div class="flex flex-col gap-3">
                     <h3 class="font-semibold text-primary-text text-md">Name</h3>
                     <p class="text-sm text-primary-text">{{$page.props.auth.user.name}}</p>
