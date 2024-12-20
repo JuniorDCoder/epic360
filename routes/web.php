@@ -26,7 +26,7 @@ Route::group(['prefix' => 'checkout'], function (){
     Route::get('/pay',[PaymentController::class, 'createCheckoutSession'] )->name('checkout-pay');
     Route::get('/success', [PaymentController::class, 'successfulPayment'])->name('checkout-success');
     Route::get('/cancel', [PaymentController::class, 'cancelPayment'])->name('checkout-cancel');
-});
+})->middleware('auth');
 
 require __DIR__.'/auth.php';
 require __DIR__.'/admin.php';

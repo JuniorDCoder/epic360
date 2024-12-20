@@ -24,7 +24,7 @@
                 <p class="text-gray-700">Category: <span>&nbsp;&nbsp;{{product.category.name}}</span> </p>
                 <div class="flex items-center justify-between gap-8 md:w-2/3">
                     <Button @click="addToCart" fill="white" textColor="secondary" class="w-full md:w-1/2">Add to Cart</Button>
-                    <Button :is-link="true" :url="{path: 'shop'}" fill="secondary" textColor="white" class="w-full md:w-1/2">Pay Now</Button>
+                    <Button :is-link="false" @click="buyNow" fill="secondary" textColor="white" class="w-full md:w-1/2">Pay Now</Button>
                 </div>
                 <hr class="w-full my-4 border-gray-300" />
                 <div class="flex items-center gap-2 text-lg md:text-sm">
@@ -89,6 +89,10 @@ const addToCart = () => {
     addProductToCart(form, props.product, quantity.value)
 };
 
+const buyNow = () => {
+    addToCart()
+    window.location.href = '/shop/cart'
+}
 const updateProduct = (item, operation) => {
     updateProductQuantity(item, operation)
 }
