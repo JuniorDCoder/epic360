@@ -65,7 +65,7 @@
                             <span class="text-2xl font-semibold">Total</span>
                             <p class="text-2xl font-semibold">€{{ total }}</p>
                         </div>
-                        <Button class="w-full" fill="secondary" textColor="white" :rounded="true">Proceed to Check Out</Button>
+                        <Button :is-link="true" :url="{path: route('checkout')}" class="w-full" fill="secondary" textColor="white" :rounded="true">Proceed to Check Out</Button>
                         <Link :href="route('shop')" class="flex gap-3 text-sm text-secondary"><p><</p> Return to Shop Page</Link>
                     </div>
                 </div>

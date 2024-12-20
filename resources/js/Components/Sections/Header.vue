@@ -105,7 +105,6 @@ onMounted(() => {
 const isSelectCountry = ref(true);
 const url = usePage()
 const isWelcomeRoute = computed(() => {
-    console.log(url)
     return url === '/';
 });
 

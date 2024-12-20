@@ -23,6 +23,8 @@ class AuthController extends Controller
             'password' => Hash::make($request->password)
         ]);
 
+        $user->assignRole('user');
+
         Auth::login($user);
 
         return redirect()->back();
@@ -37,7 +39,10 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->route('user.account');
+           if(Auth::user()->hasRole('admin')){
+               return redirect()->route('admin.dashboard');
+           }
+           return redirect()->route('user.account');
         }
 
         return back()->withErrors([

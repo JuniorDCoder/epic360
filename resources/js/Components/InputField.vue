@@ -1,12 +1,12 @@
 <template>
     <div class="flex flex-col gap-3 md:gap-2">
-      <label class="text-sm" :for="inputId">{{ label }}</label>
+      <label v-if="label" class="text-sm" :for="inputId">{{ label }}</label>
       <input
         :id="inputId"
         v-model="model"
         :type="type"
         :placeholder="placeholder"
-        class="p-3 border border-gray-600 rounded-md md:p-2"
+        class="p-3 border border-gray-400 rounded-md md:p-2"
       />
     </div>
   </template>

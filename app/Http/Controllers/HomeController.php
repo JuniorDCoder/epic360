@@ -6,6 +6,7 @@ use Inertia\Inertia;
 use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Cart;
 
 class HomeController extends Controller
 {
@@ -34,10 +35,26 @@ class HomeController extends Controller
     }
 
     public function myAccount(){
+        if(auth()->user() && auth()->user()->hasRole('admin')){
+            return redirect()->route('admin.dashboard');
+        }
         return Inertia::render('Auth/MyAccount');
     }
 
     public function login(){
         return Inertia::render('Auth/Login');
+    }
+
+    public function checkout(){
+        $cartItems = Cart::content();
+
+        if (count($cartItems) > 0){
+            return Inertia::render('Shop/Checkout', [
+                'cartItems' => $cartItems,
+                'count' => count($cartItems)
+            ]);
+        }
+
+        return redirect()->route('cart.details');
     }
 }

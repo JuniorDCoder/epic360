@@ -9,6 +9,7 @@ import { ZiggyVue } from '../../vendor/tightenco/ziggy';
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 import Vue3Toastify from 'vue3-toastify'
+import VueApexCharts from "vue3-apexcharts";
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 AOS.init();
@@ -25,6 +26,7 @@ createInertiaApp({
             .use(ZiggyVue)
             .use(AOS)
             .use(Vue3Toastify)
+            .use(VueApexCharts)
             .mount(el);
     },
     progress: {

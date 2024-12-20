@@ -29,7 +29,7 @@ class CartController extends Controller
             $cartData['name'] = $product->name;
             $cartData['qty'] = $request->qty;
             $cartData['price'] = $product->giveaway_price ? $product->giveaway_price : $product->price;
-            $cartData['weight'] = 10;
+            $cartData['weight'] = 1;
             $cartData['options']['image'] = $product->image;
             $cartData['options']["actual_price"] = $product->price;
 
