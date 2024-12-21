@@ -13,7 +13,7 @@ Route::group(["prefix" => "shop"], function() {
     Route::get('/product/{id}', [HomeController::class, 'productDetails'])->name('shop.item');
 
     Route::group(["prefix" => "cart"], function() {
-        Route::get('/checkout', [HomeController::class, 'checkout'])->name('checkout');
+        Route::get('/checkout', [HomeController::class, 'checkout'])->name('checkout')->middleware('auth');
         Route::post('/add/{product}', [CartController::class, 'addToCart'])->name('cart.add');
         Route::post('/remove/{id}', [CartController::class, 'removeProduct'])->name('cart.remove');
         Route::get('/count', [CartController::class, 'getCartCount'])->name('cart.count');

@@ -27,7 +27,7 @@ class AuthController extends Controller
 
         Auth::login($user);
 
-        return redirect()->back();
+        return redirect()->route('shop');
     }
 
     public function login(Request $request)
