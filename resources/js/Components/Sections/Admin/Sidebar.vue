@@ -1,5 +1,5 @@
 <template>
-    <div class="fixed top-0 z-30 left-0 flex-col w-[255px] h-full gap-4 p-4 bg-primary-text md:flex hidden rounded-b-md">
+    <div class="fixed top-0 left-0 z-30 flex-col hidden h-full gap-4 p-4 bg-primary-text md:flex rounded-b-md">
         <Link :href="route('welcome')">
             <img src="/public/storage/icons/logo.png" alt="Logo" class="w-[52px] h-[52px]" />
         </Link>

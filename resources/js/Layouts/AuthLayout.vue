@@ -1,9 +1,12 @@
 <template>
-    <div class="flex h-full overflow-x-hidden">
-        <Sidebar />
-        <div class="flex-1 h-full md:ml-[250px] bg-primary">
+    <div class="flex w-full h-full gap-0 overflow-x-hidden">
+        <Sidebar class="w-[15%]" />
+        <div class="flex-1 h-full bg-primary w-[85%] md:ml-[15%]">
             <Header />
-            <slot />
+            <div class="">
+                <slot />
+            </div>
+
         </div>
     </div>
 </template>

@@ -13,7 +13,7 @@
             <div class="flex flex-col justify-between w-full gap-4 md:flex-row">
                <div class="flex flex-col p-4 bg-white rounded-md">
                     <h3 class="m-4 font-bold">Orders Over time</h3>
-                    <apexchart width="700" type="line" :options="options" :series="series"></apexchart>
+                    <apexchart width="680" type="line" :options="options" :series="series"></apexchart>
                </div>
                 <div class="flex flex-col gap-5 p-6 bg-white rounded-md md:w-1/3">
                     <h3 class="text-3xl font-bold">Last 7 Days Sales</h3>
@@ -27,8 +27,8 @@
                     </div>
                     <hr class="my-3">
                     <div>
-                        <apexchart width="300" type="donut" :options="pieOptions" :series="pieSeries"></apexchart>
-                      </div>
+                        <apexchart width="270" type="donut" :options="pieOptions" :series="pieSeries"></apexchart>
+                    </div>
                 </div>
             </div>
             <div class="flex flex-col justify-between w-full gap-4 md:flex-row">

@@ -23,7 +23,7 @@
 
             <div class="flex flex-col gap-3 p-5 mx-auto mt-12 bg-white md:w-1/2">
                 <h3 class="text-[#007AFF] text-2xl">Thank you!</h3>
-                <p class="text-primary-dark">Order #WB56440019 has been received!</p>
+                <p class="text-primary-dark">Order <span class="font-semibold">{{order?.id}}</span> has been received!</p>
                 <p class="text-primary-dark">You will receive an email confirmation shortly</p>
             </div>
 
@@ -31,7 +31,7 @@
                 <h3 class="text-xl font-semibold text-primary-text">Order details</h3>
                 <div class="flex justify-between w-full text-primary-text">
                     <span>Subtotal</span>
-                    <span class="font-semibold">€560.00</span>
+                    <span class="font-semibold">€{{order?.total}}</span>
                 </div>
                 <div class="flex justify-between w-full text-primary-text">
                     <span>Delivery charge</span>
@@ -40,7 +40,7 @@
                 <hr class="h-2">
                 <div class="flex justify-between w-full text-primary-text">
                     <span>Total</span>
-                    <span class="font-semibold">€560.00</span>
+                    <span class="font-semibold">€{{order?.total}}</span>
                 </div>
                 <div class="flex justify-between w-full text-primary-text">
                     <span>Name</span>
@@ -63,6 +63,10 @@ import BaseLayout from '../../Layouts/BaseLayout.vue';
 import { computed } from 'vue';
 import { usePage } from '@inertiajs/vue3';
 import Button from '../../Components/Button.vue';
+
+defineProps({
+    order: String
+})
 
 const { props } = usePage();
 const userInfo = computed(() => props.auth?.user ? { ...props.auth.user } : null);
