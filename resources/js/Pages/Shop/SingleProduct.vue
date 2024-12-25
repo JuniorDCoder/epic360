@@ -90,8 +90,10 @@ const addToCart = () => {
 };
 
 const buyNow = () => {
-    addToCart()
-    window.location.href = '/shop/cart'
+    addProductToCart(form, props.product, quantity.value)
+    setTimeout(() => {
+        window.location.href = '/shop/cart'
+    }, 1000);
 }
 const updateProduct = (item, operation) => {
     updateProductQuantity(item, operation)

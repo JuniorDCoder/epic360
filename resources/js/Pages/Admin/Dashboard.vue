@@ -11,18 +11,18 @@
                 <AnalyticsCard title="Existing Users" :value="1660" :image="ExistingUsers"/>
             </div>
             <div class="flex flex-col justify-between w-full gap-4 md:flex-row">
-               <div class="flex flex-col p-4 bg-white rounded-md">
+               <div class="flex flex-col p-4 bg-white rounded-md md:w-[80%]">
                     <h3 class="m-4 font-bold">Orders Over time</h3>
-                    <apexchart width="680" type="line" :options="options" :series="series"></apexchart>
+                    <apexchart width="700" type="line" :options="options" :series="series"></apexchart>
                </div>
                 <div class="flex flex-col gap-5 p-6 bg-white rounded-md md:w-1/3">
                     <h3 class="text-3xl font-bold">Last 7 Days Sales</h3>
                     <div class="flex flex-col gap-0.5">
-                        <p class="text-3xl font-bold text-primary-text">1,138</p>
+                        <p class="text-3xl font-bold text-primary-text">{{totalOrders}}</p>
                         <span class="text-xl text-primary-dark">Items Sold</span>
                     </div>
                     <div class="flex flex-col gap-0.5">
-                        <p class="text-3xl font-bold text-primary-text">€203,546</p>
+                        <p class="text-3xl font-bold text-primary-text">€ {{totalRevenue}}</p>
                         <span class="text-xl text-primary-dark">Revenue</span>
                     </div>
                     <hr class="my-3">
@@ -46,37 +46,73 @@
 import AnalyticsCard from '../../Components/Sections/Admin/AnalyticsCard.vue';
 import AuthLayout from '../../Layouts/AuthLayout.vue';
 import { Head } from '@inertiajs/vue3';
-
+import { computed } from 'vue';
 import Euro from '/public/storage/admin/euro.png'
 import Orders from '/public/storage/admin/card-order.png'
 import Chart from '/public/storage/admin/chart.png'
 import NewUsers from '/public/storage/admin/new-users.png'
 import ExistingUsers from '/public/storage/admin/existing-users.png'
 
+const props = defineProps({
+    orderCounts: Object,
+    orderAmounts: Object,
+});
+
+console.log(props.orderAmounts)
+
+const totalOrders = computed(() => {
+    return Object.values(props.orderCounts).reduce((sum, count) => sum + count, 0);
+});
+
+const totalRevenue = computed(() => {
+    return Object.values(props.orderAmounts).reduce((sum, amount) => sum + amount, 0);
+});
+
 const options = {
-    chat: {
+    chart: {
         id: 'vuechart-example'
     },
     xaxis: {
-        categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998]
+        categories: Object.keys(props.orderCounts)
     },
+    responsive: [
+        {
+            breakpoint: 1000,
+            options: {
+                chart: {
+                    width: '100%'
+                }
+            }
+        },
+        {
+            breakpoint: 600,
+            options: {
+                chart: {
+                    width: '100%'
+                }
+            }
+        }
+    ]
 }
 
 const series = [{
-        name: 'Orders',
-        data: [30, 40, 45, 50, 49, 60, 70, 91]
+        name: 'Revenue',
+        data: Object.values(props.orderAmounts)
     },
     {
-        name: 'Orders',
-        data: [20, 30, 95, 50, 29, 80, 70, 61]
+        name: 'Number of Items Orderered',
+        data: Object.values(props.orderCounts)
     },
 ]
 
-const pieOptions = {}
-const pieSeries = [44, 55, 41, 17, 15]
+const pieOptions = {
+    labels: Object.keys(props.orderAmounts), // Add labels for the pie chart
+    responsive: [
+    ]
+}
+const pieSeries = Object.values(props.orderCounts);
 
 </script>
-
 <style scoped>
 
 </style>

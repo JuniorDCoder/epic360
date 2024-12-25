@@ -1,12 +1,12 @@
 <template>
-    <div class="fixed top-0 left-0 z-30 flex-col hidden h-full gap-4 p-4 bg-primary-text md:flex rounded-b-md">
+    <div class="fixed top-0 left-0 z-30 flex-col hidden h-full gap-4 p-3 bg-primary-text md:flex rounded-b-md">
         <Link :href="route('welcome')">
             <img src="/public/storage/icons/logo.png" alt="Logo" class="w-[52px] h-[52px]" />
         </Link>
         <div class="flex flex-col gap-3">
-            <SideBarItem :route="route('admin.dashboard')" :imgSrc="Home" altText="Dashboard" text="Dashboard" />
-            <SideBarItem route="orders" :imgSrc="Orders" altText="Orders" text="Orders" :newOrders="18"/>
-            <SideBarItem route="" :imgSrc="Customers" altText="Customers" text="Customers" />
+            <SideBarItem :active="route().current('admin.dashboard')" :route="route('admin.dashboard')" :imgSrc="Home" altText="Dashboard" text="Dashboard" />
+            <SideBarItem :active="route().current('admin.orders')" :route="route('admin.orders')" route="orders" :imgSrc="Orders" altText="Orders" text="Orders" :newOrders="18"/>
+            <SideBarItem :active="route().current('admin.customers')" :route="route('admin.customers')" :imgSrc="Customers" altText="Customers" text="Customers" />
             <SideBarItem route="" :imgSrc="Support" altText="Support" text="Support" />
             <SideBarItem route="" :imgSrc="Settings" altText="Settings" text="Settings" />
         </div>

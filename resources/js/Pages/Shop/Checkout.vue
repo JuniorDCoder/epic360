@@ -123,7 +123,7 @@
 import { onMounted, ref } from "vue";
 import BaseLayout from "../../Layouts/BaseLayout.vue";
 import InputField from "../../Components/InputField.vue";
-import { Link, useForm, Head } from "@inertiajs/vue3";
+import { Link, useForm, Head, usePage } from "@inertiajs/vue3";
 import Button from "../../Components/Button.vue";
 import { computed } from "vue";
 import { loadStripe } from "@stripe/stripe-js";
@@ -145,6 +145,7 @@ const total = computed(() => {
   return subtotal.value + shipping.value;
 });
 
+
 const form = useForm({
   email: "",
   first_name: "",
@@ -156,7 +157,7 @@ const form = useForm({
   province: "",
   postal_code: "",
   phone: "",
-  deliveryMethod: "ship",
+  deliveryMethod: "pickup",
   saveShippingAddress: true,
 });
 
