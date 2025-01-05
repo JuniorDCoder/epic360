@@ -7,8 +7,8 @@
             <SideBarItem :active="route().current('admin.dashboard')" :route="route('admin.dashboard')" :imgSrc="Home" altText="Dashboard" text="Dashboard" />
             <SideBarItem :active="route().current('admin.orders')" :route="route('admin.orders')" route="orders" :imgSrc="Orders" altText="Orders" text="Orders" :newOrders="18"/>
             <SideBarItem :active="route().current('admin.customers')" :route="route('admin.customers')" :imgSrc="Customers" altText="Customers" text="Customers" />
-            <SideBarItem route="" :imgSrc="Support" altText="Support" text="Support" />
-            <SideBarItem route="" :imgSrc="Settings" altText="Settings" text="Settings" />
+            <SideBarItem :route="route('admin.support')" :active="route().current('admin.support')"  :imgSrc="Support" altText="Support" text="Support" />
+            <SideBarItem :route="route('admin.settings')" :active="route().current('admin.settings')" :imgSrc="Settings" altText="Settings" text="Settings" />
         </div>
     </div>
 </template>

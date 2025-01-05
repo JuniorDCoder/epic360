@@ -51,7 +51,14 @@ class DashboardController extends Controller
         $customers = User::all();
 
         return Inertia::render('Admin/Customers', [
-            'customers' => $customers,
+            'users' => $customers,
         ]);
+    }
+
+    public function support(){
+        return Inertia::render('Admin/Support');
+    }
+    public function settings(){
+        return Inertia::render('Admin/Settings');
     }
 }
