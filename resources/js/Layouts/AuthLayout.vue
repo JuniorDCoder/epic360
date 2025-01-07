@@ -3,7 +3,7 @@
         <Sidebar class="w-[17%]" />
         <div class="flex-1 h-full bg-primary w-[83%] md:ml-[16%]">
             <Header class="md:ml-[1%]" />
-            <div class="">
+            <div>
                 <slot />
             </div>
 

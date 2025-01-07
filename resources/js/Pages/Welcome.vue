@@ -11,7 +11,7 @@
             <h3 class="text-3xl font-semibold text-center md:text-4xl text-primary-text">Every <span class="text-blue-500">Tech</span> category just a click away</h3>
             <Carousel autoplay="3000" :items-to-show="6" :breakpoints="breakpoints">
                 <Slide v-for="slide in categories" class="" :key="slide">
-                    <Link :href="route('welcome')" class="flex flex-col gap-2">
+                    <Link :href="route('shop')" class="flex flex-col gap-2">
                         <img :src="`/storage/`+slide.image" alt="Product" />
                         <span class="text-xl text-primary-text">{{slide.name}}</span>
                     </Link>
@@ -27,7 +27,7 @@
             <h3 data-aos="fade-up" data-aos-delay=300 data-aos-duration=600 class="mb-3 text-4xl font-semibold text-primary-text">Our Products</h3>
             <Carousel autoplay="2500" :items-to-show="4" :breakpoints="breakpoints">
                 <Slide v-for="slide in categories" :key="slide" class="">
-                    <Link :href="route('welcome')" class="flex flex-col items-start gap-2 p-6 bg-white rounded-md shadow-md">
+                    <Link :href="route('shop')" class="flex flex-col items-start gap-2 p-6 bg-white rounded-md shadow-md">
                         <div class="flex flex-col items-start">
                             <span class="text-2xl font-semibold text-primary-text">{{slide.name}}</span>
                             <span class="text-lg text-primary-text">Starting from €{{slide.starting_price}}</span>

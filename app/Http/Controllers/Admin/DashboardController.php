@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Carbon\Carbon;
 use App\Models\User;
 use Inertia\Inertia;
 use App\Models\Order;
+use App\Models\Store;
 use App\Http\Controllers\Controller;
-use Carbon\Carbon;
 
 class DashboardController extends Controller
 {
@@ -59,6 +60,8 @@ class DashboardController extends Controller
         return Inertia::render('Admin/Support');
     }
     public function settings(){
-        return Inertia::render('Admin/Settings');
+        return Inertia::render('Admin/Settings', [
+            'store' => Store::first()
+        ]);
     }
 }

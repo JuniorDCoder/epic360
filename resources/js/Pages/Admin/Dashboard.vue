@@ -70,7 +70,7 @@ const totalRevenue = computed(() => {
 
 const options = {
     chart: {
-        id: 'vuechart-example'
+        id: 'dashboard_analytics'
     },
     xaxis: {
         categories: Object.keys(props.orderCounts)
