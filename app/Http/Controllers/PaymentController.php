@@ -29,7 +29,7 @@ class PaymentController extends Controller
         Stripe::setApiKey(env('STRIPE_SECRET'));
 
         $checkoutSession = Session::create([
-            'payment_method_types' => ['card', 'ideal', 'sepa_debit', 'sofort', 'bancontact'],
+            'payment_method_types' => ['card', 'ideal', 'bancontact'],
             'line_items' => [[
                 'price_data' => [
                     'currency' => env('CASHIER_CURRENCY'),
